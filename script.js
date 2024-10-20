@@ -42,11 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const displayMovies = (movies, container, isSearch = false) => {
         container.innerHTML = '';
-        movies.forEach(movie => {
+        movies.forEach((movie,index) => {
+            let imageNumber = 700 + index
+            console.log(imageNumber)
             const movieCard = document.createElement('div');
             movieCard.className = 'movie-card';
             movieCard.innerHTML = `
-                <img src="https://picsum.photos/700" alt="${movie.movie}">
+                <img src="https://picsum.photos/${imageNumber}" alt="${movie.movie}">
                 <h3>${movie.movie}</h3>
                 <p>Rating: ${movie.rating}</p>
             `;
@@ -73,11 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const displayWatchlist = () => {
         watchlistContent.innerHTML = '';
-        watchlist.forEach(movie => {
+        watchlist.forEach((movie,index) => {
+            let imageNumber = 700 + index
             const watchlistCard = document.createElement('div');
             watchlistCard.className = 'watchlist-card';
             watchlistCard.innerHTML = `
-                <img src="https://picsum.photos/700" alt="${movie.movie}">
+                <img src="https://picsum.photos/${imageNumber}" alt="${movie.movie}">
                 <h3>${movie.movie}</h3>
                 <p>Rating: ${movie.rating}</p>
                 <button class="remove-from-watchlist">Remove</button>
