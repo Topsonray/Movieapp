@@ -1,3 +1,4 @@
+// Full script.js content for reference and correction
 document.addEventListener('DOMContentLoaded', () => {
     const apiBaseUrl = 'https://dummyapi.online/api';
     const trendingMoviesList = document.getElementById('trending-movies-list');
@@ -5,6 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const autocompleteSuggestions = document.getElementById('autocomplete-suggestions');
     const movieDetailsContent = document.getElementById('movie-details-content');
     const watchlistContent = document.getElementById('watchlist-content');
+
+    const homeSection = document.getElementById('home');
+    const trendingMoviesSection = document.getElementById('trending-movies');
+    const movieDetailsSection = document.getElementById('movie-details');
+    const watchlistSection = document.getElementById('watchlist');
+
+    const homeLink = document.getElementById('home-link');
+    const trendingLink = document.getElementById('trending-link');
+    const watchlistLink = document.getElementById('watchlist-link');
+    const loginLink = document.getElementById('login-link');
 
     let watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
 
@@ -42,9 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const displayMovies = (movies, container, isSearch = false) => {
         container.innerHTML = '';
-        movies.forEach((movie,index) => {
-            let imageNumber = 700 + index
-            console.log(imageNumber)
+        movies.forEach((movie, index) => {
+            let imageNumber = 700 + index;
             const movieCard = document.createElement('div');
             movieCard.className = 'movie-card';
             movieCard.innerHTML = `
@@ -68,6 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="${movie.imdb_url}" target="_blank">View on IMDb</a>
             <button id="add-to-watchlist">Add to Watchlist</button>
         `;
+        movieDetailsSection.classList.remove('hidden');
+        homeSection.classList.add('hidden');
+        trendingMoviesSection.classList.add('hidden');
+        watchlistSection.classList.add('hidden');
+
         document.getElementById('add-to-watchlist').addEventListener('click', () => {
             addToWatchlist(movie);
         });
@@ -75,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const displayWatchlist = () => {
         watchlistContent.innerHTML = '';
-        watchlist.forEach((movie,index) => {
-            let imageNumber = 700 + index
+        watchlist.forEach((movie, index) => {
+            let imageNumber = 700 + index;
             const watchlistCard = document.createElement('div');
             watchlistCard.className = 'watchlist-card';
             watchlistCard.innerHTML = `
@@ -113,6 +128,33 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             autocompleteSuggestions.innerHTML = '';
         }
+    });
+
+    homeLink.addEventListener('click', () => {
+        homeSection.classList.remove('hidden');
+        trendingMoviesSection.classList.add('hidden');
+        movieDetailsSection.classList.add('hidden');
+        watchlistSection.classList.add('hidden');
+    });
+
+    trendingLink.addEventListener('click', () => {
+        homeSection.classList.add('hidden');
+        trendingMoviesSection.classList.remove('hidden');
+        movieDetailsSection.classList.add('hidden');
+        watchlistSection.classList.add('hidden');
+        fetchTrendingMovies();
+    });
+
+    watchlistLink.addEventListener('click', () => {
+        homeSection.classList.add('hidden');
+        trendingMoviesSection.classList.add('hidden');
+        movieDetailsSection.classList.add('hidden');
+        watchlistSection.classList.remove('hidden');
+        displayWatchlist();
+    });
+
+    loginLink.addEventListener('click', () => {
+        alert('Login functionality to be implemented');
     });
 
     fetchTrendingMovies();

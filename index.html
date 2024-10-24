@@ -9,19 +9,31 @@
 <body>
     <header>
         <h1>Movie Mania</h1>
+        <nav>
+            <ul>
+                <li><a href="#" id="home-link">Home</a></li>
+                <li><a href="#" id="trending-link">Trending Movies</a></li>
+                <li><a href="#" id="watchlist-link">Watchlist</a></li>
+                <li><a href="#" id="login-link">Login</a></li>
+            </ul>
+        </nav>
         <input type="text" id="search-bar" placeholder="Search for movies...">
         <div id="autocomplete-suggestions"></div>
     </header>
     <main>
-        <section id="trending-movies">
+        <section id="home">
+            <h2>Welcome to Movie Mania</h2>
+            <p>Discover your next favorite movie!</p>
+        </section>
+        <section id="trending-movies" class="hidden">
             <h2>Trending Movies</h2>
             <div id="trending-movies-list"></div>
         </section>
-        <section id="movie-details">
+        <section id="movie-details" class="hidden">
             <h2>Movie Details</h2>
             <div id="movie-details-content"></div>
         </section>
-        <section id="watchlist">
+        <section id="watchlist" class="hidden">
             <h2>Your Watchlist</h2>
             <div id="watchlist-content"></div>
         </section>
@@ -29,3 +41,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

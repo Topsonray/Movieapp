@@ -6,16 +6,47 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: #a81b1b;
     color: white;
     padding: 1rem;
     text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 header input {
     margin-top: 0.5rem;
     padding: 0.5rem;
     width: 80%;
+}
+
+#autocomplete-suggestions {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    width: 80%;
+    margin-top: 5px;
+    z-index: 1000;
 }
 
 main {
@@ -30,20 +61,56 @@ section {
     margin-bottom: 2rem;
 }
 
-#trending-movies-list, #categories-list, #movie-details-content, #watchlist-content {
+.hidden {
+    display: none;
+}
+
+#random-movies-list, #trending-movies-list, #movie-details-content, #watchlist-content {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    justify-content: center;
 }
 
-.movie-card, .category-card, .watchlist-card {
+.movie-card, .watchlist-card {
     border: 1px solid #ccc;
     padding: 1rem;
-    width: 150px;
+    width: 300px;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
 }
 
-.movie-card img, .category-card img, .watchlist-card img {
+.movie-card:hover, .watchlist-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card img, .watchlist-card img {
     width: 100%;
     height: auto;
+    border-bottom: 1px solid #ccc;
+}
+
+footer {
+    background-color: #a81b1b;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+    }
+    
+    header input {
+        width: 100%;
+    }
+    
+    .movie-card, .watchlist-card {
+        width: 100%;
+    }
 }
